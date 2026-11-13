@@ -1,0 +1,1324 @@
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CAPYVERSE — Stay Chill</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --bg: #08130f;
+    --bg2: #0d2119;
+    --card: rgba(255,255,255,.055);
+    --line: rgba(255,255,255,.1);
+    --text: #f4f2e9;
+    --muted: #9baaa0;
+    --green: #9bcf7c;
+    --green2: #c9e8a9;
+    --brown: #a96f45;
+    --brown-dark: #70452f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 70% 10%, rgba(119,177,92,.13), transparent 32%),
+        radial-gradient(circle at 10% 50%, rgba(52,105,77,.12), transparent 30%),
+        var(--bg);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .025;
+    background-image:
+        linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 10;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+}
+
+/* NAV */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    padding: 22px 0;
+    background: linear-gradient(to bottom, rgba(8,19,15,.9), transparent);
+}
+
+.nav-inner {
+    width: min(1180px, calc(100% - 40px));
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.04em;
+}
+
+.logo span {
+    color: var(--green);
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    color: #b7c1b9;
+    font-size: 14px;
+}
+
+.nav-links a {
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    align-items: center;
+    gap: 30px;
+}
+
+.kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 13px;
+    border: 1px solid rgba(155,207,124,.25);
+    background: rgba(155,207,124,.06);
+    color: var(--green2);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+.kicker-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 14px var(--green);
+}
+
+h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(64px, 9vw, 132px);
+    line-height: .82;
+    letter-spacing: -.075em;
+    max-width: 700px;
+}
+
+h1 span {
+    display: block;
+    color: var(--green);
+}
+
+.hero-copy {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 470px;
+    margin-top: 28px;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 34px;
+}
+
+.btn {
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .25s;
+}
+
+.btn-primary {
+    color: #10200f;
+    background: var(--green);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(155,207,124,.2);
+}
+
+.btn-secondary {
+    border: 1px solid var(--line);
+    color: #dce4dd;
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,.06);
+}
+
+/* CAPYBARA STAGE */
+
+.capy-stage {
+    position: relative;
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.capy-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(155,207,124,.16) 0%,
+        rgba(155,207,124,.06) 38%,
+        transparent 70%);
+    filter: blur(10px);
+}
+
+.capybara {
+    position: relative;
+    width: min(620px, 100%);
+    z-index: 3;
+    animation: float 5s ease-in-out infinite;
+    filter: drop-shadow(0 30px 30px rgba(0,0,0,.3));
+}
+
+.capybara svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.capy-ground {
+    position: absolute;
+    bottom: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 380px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.5);
+    filter: blur(16px);
+    z-index: 1;
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(.5deg);
+    }
+}
+
+/* SVG */
+
+.capy-body {
+    fill: url(#fur);
+}
+
+.capy-dark {
+    fill: #71472f;
+}
+
+.capy-light {
+    fill: #c58a59;
+}
+
+.capy-face {
+    fill: #b97b4f;
+}
+
+.capy-muzzle {
+    fill: #d59a68;
+}
+
+.capy-ear {
+    fill: #744731;
+}
+
+.eye {
+    fill: #15120f;
+}
+
+.eye-shine {
+    fill: white;
+}
+
+.nose {
+    fill: #241914;
+}
+
+.mouth {
+    fill: none;
+    stroke: #4b2d20;
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+.whisker {
+    stroke: #7b5238;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    opacity: .6;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.stat {
+    padding: 30px 20px;
+    border-right: 1px solid var(--line);
+}
+
+.stat:last-child {
+    border-right: 0;
+}
+
+.stat-number {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 35px;
+    color: var(--green);
+    letter-spacing: -.05em;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+/* SECTIONS */
+
+section {
+    padding: 130px 0;
+}
+
+.section-head {
+    max-width: 650px;
+    margin-bottom: 55px;
+}
+
+.eyebrow {
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(42px, 6vw, 78px);
+    letter-spacing: -.06em;
+    line-height: .95;
+}
+
+.section-text {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 18px;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+
+.card {
+    min-height: 310px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
+    position: relative;
+    overflow: hidden;
+    transition: .35s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(155,207,124,.35);
+}
+
+.card-number {
+    color: rgba(255,255,255,.25);
+    font-size: 12px;
+}
+
+.card h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 30px;
+    margin-top: 85px;
+}
+
+.card p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.card-icon {
+    position: absolute;
+    top: 27px;
+    right: 27px;
+    font-size: 34px;
+}
+
+/* QUOTE */
+
+.quote {
+    padding: 120px 0;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.quote p {
+    max-width: 900px;
+    margin: auto;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(38px, 6vw, 75px);
+    line-height: .98;
+    letter-spacing: -.06em;
+}
+
+.quote span {
+    color: var(--green);
+}
+
+/* WATER */
+
+.water {
+    position: relative;
+    min-height: 620px;
+    overflow: hidden;
+    background:
+        linear-gradient(to bottom,
+            transparent 0%,
+            rgba(35,90,73,.15) 50%,
+            rgba(21,70,62,.32) 100%);
+}
+
+.water::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 18px,
+            rgba(134,200,177,.05) 19px,
+            transparent 20px
+        );
+}
+
+.water-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 620px;
+}
+
+.water-copy {
+    max-width: 480px;
+}
+
+.water-copy h2 {
+    margin-bottom: 22px;
+}
+
+.water-capy {
+    width: 440px;
+    justify-self: center;
+    opacity: .95;
+    filter: drop-shadow(0 25px 25px rgba(0,0,0,.35));
+}
+
+.water-capy svg {
+    width: 100%;
+}
+
+/* CTA */
+
+.cta {
+    text-align: center;
+    padding: 150px 20px;
+}
+
+.cta h2 {
+    max-width: 800px;
+    margin: auto;
+}
+
+.cta p {
+    color: var(--muted);
+    margin: 22px auto 30px;
+    max-width: 500px;
+    line-height: 1.7;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 35px 0;
+    border-top: 1px solid var(--line);
+    color: #6f7c74;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* REVEAL */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .hero-grid,
+    .water-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 130px;
+    }
+
+    .capy-stage {
+        min-height: 500px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .stat:nth-child(2) {
+        border-right: 0;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .water-capy {
+        width: min(440px, 90vw);
+        order: -1;
+    }
+
+    .water-inner {
+        padding: 70px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        display: none;
+    }
+
+    .container,
+    .nav-inner {
+        width: min(100% - 28px, 1180px);
+    }
+
+    h1 {
+        font-size: 68px;
+    }
+
+    .capy-stage {
+        min-height: 400px;
+    }
+
+    .capybara {
+        width: 115%;
+        max-width: none;
+        margin-left: -8%;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat {
+        padding: 22px 15px;
+    }
+
+    section {
+        padding: 90px 0;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a class="logo" href="#">CAPY<span>VERSE</span></a>
+
+        <div class="nav-links">
+            <a href="#philosophy">Philosophie</a>
+            <a href="#habitat">Habitat</a>
+            <a href="#status">Status</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+    <div class="container hero-grid">
+
+        <div class="hero-content">
+            <div class="kicker">
+                <span class="kicker-dot"></span>
+                Officially chill
+            </div>
+
+            <h1>
+                STAY
+                <span>CHILL.</span>
+            </h1>
+
+            <p class="hero-copy">
+                Die Capybara-Lebensphilosophie in ihrer reinsten Form:
+                weniger Stress, mehr Wasser, Snacks und absolut keine Eile.
+            </p>
+
+            <div class="buttons">
+                <a href="#philosophy" class="btn btn-primary">
+                    Entdecke die Philosophie
+                </a>
+
+                <a href="#habitat" class="btn btn-secondary">
+                    Zum Habitat ↓
+                </a>
+            </div>
+        </div>
+
+        <!-- BEAUTIFUL SVG CAPYBARA -->
+
+        <div class="capy-stage">
+
+            <div class="capy-glow"></div>
+
+            <div class="capy-ground"></div>
+
+            <div class="capybara">
+
+                <svg viewBox="0 0 700 560"
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-label="Niedliche Capybara Illustration">
+
+                    <defs>
+
+                        <linearGradient id="fur"
+                            x1="0" y1="0"
+                            x2="1" y2="1">
+                            <stop offset="0" stop-color="#c58a59"/>
+                            <stop offset=".5" stop-color="#a96f45"/>
+                            <stop offset="1" stop-color="#825236"/>
+                        </linearGradient>
+
+                        <linearGradient id="face"
+                            x1="0" y1="0"
+                            x2="0" y2="1">
+                            <stop offset="0" stop-color="#c98b59"/>
+                            <stop offset="1" stop-color="#a96b43"/>
+                        </linearGradient>
+
+                        <radialGradient id="muzzle"
+                            cx=".5" cy=".35">
+                            <stop offset="0" stop-color="#e0a778"/>
+                            <stop offset="1" stop-color="#bd7d50"/>
+                        </radialGradient>
+
+                        <filter id="softShadow">
+                            <feGaussianBlur stdDeviation="12"/>
+                        </filter>
+                    </defs>
+
+                    <!-- BODY -->
+
+                    <ellipse
+                        cx="355"
+                        cy="350"
+                        rx="250"
+                        ry="125"
+                        class="capy-body"/>
+
+                    <!-- BACK HIGHLIGHT -->
+
+                    <path
+                        d="M150 318
+                           C205 220 380 195 500 245
+                           C530 258 550 278 570 302
+                           C505 263 412 245 320 264
+                           C245 280 190 312 150 318Z"
+                        fill="#d29a68"
+                        opacity=".32"/>
+
+                    <!-- REAR LEG -->
+
+                    <path
+                        d="M482 383
+                           C495 420 495 467 470 490
+                           C450 507 425 495 425 475
+                           L431 392Z"
+                        fill="#855437"/>
+
+                    <!-- FRONT LEG -->
+
+                    <path
+                        d="M270 390
+                           C270 430 263 473 279 492
+                           C292 507 320 501 326 482
+                           L325 386Z"
+                        fill="#8b5839"/>
+
+                    <!-- FEET -->
+
+                    <ellipse
+                        cx="288"
+                        cy="493"
+                        rx="38"
+                        ry="14"
+                        fill="#65402e"/>
+
+                    <ellipse
+                        cx="455"
+                        cy="488"
+                        rx="39"
+                        ry="14"
+                        fill="#65402e"/>
+
+                    <!-- NECK -->
+
+                    <path
+                        d="M188 270
+                           C190 205 230 160 292 157
+                           C347 155 380 194 374 251
+                           L358 315
+                           L200 320Z"
+                        fill="url(#face)"/>
+
+                    <!-- HEAD -->
+
+                    <path
+                        d="M170 177
+                           C170 113 225 71 302 70
+                           C378 69 430 104 444 164
+                           C456 215 430 267 383 292
+                           C333 319 255 308 207 276
+                           C181 258 169 220 170 177Z"
+                        fill="url(#face)"/>
+
+                    <!-- EAR LEFT -->
+
+                    <path
+                        d="M196 112
+                           C157 95 145 56 168 35
+                           C189 17 220 39 226 69
+                           C231 91 218 108 196 112Z"
+                        fill="#754730"/>
+
+                    <path
+                        d="M192 92
+                           C174 82 169 60 180 52
+                           C192 44 205 59 207 76
+                           C208 87 202 93 192 92Z"
+                        fill="#a76b55"/>
+
+                    <!-- EAR RIGHT -->
+
+                    <path
+                        d="M389 103
+                           C402 67 430 40 456 48
+                           C481 56 482 94 462 116
+                           C444 136 415 130 389 103Z"
+                        fill="#754730"/>
+
+                    <path
+                        d="M414 96
+                           C421 73 438 62 450 67
+                           C462 73 459 93 446 104
+                           C435 113 423 109 414 96Z"
+                        fill="#a76b55"/>
+
+                    <!-- FOREHEAD -->
+
+                    <path
+                        d="M221 126
+                           C258 91 323 88 365 111
+                           C394 127 408 153 407 176
+                           C380 148 348 137 313 137
+                           C277 137 246 147 221 126Z"
+                        fill="#d09968"
+                        opacity=".45"/>
+
+                    <!-- EYES -->
+
+                    <ellipse
+                        cx="247"
+                        cy="171"
+                        rx="13"
+                        ry="17"
+                        class="eye"/>
+
+                    <ellipse
+                        cx="375"
+                        cy="171"
+                        rx="13"
+                        ry="17"
+                        class="eye"/>
+
+                    <circle
+                        cx="251"
+                        cy="166"
+                        r="4.5"
+                        class="eye-shine"/>
+
+                    <circle
+                        cx="379"
+                        cy="166"
+                        r="4.5"
+                        class="eye-shine"/>
+
+                    <!-- MUZZLE -->
+
+                    <path
+                        d="M233 205
+                           C253 181 286 176 310 194
+                           C326 178 359 179 381 202
+                           C398 222 390 257 365 271
+                           C334 289 275 287 245 268
+                           C221 252 216 226 233 205Z"
+                        fill="url(#muzzle)"/>
+
+                    <!-- NOSE -->
+
+                    <ellipse
+                        cx="308"
+                        cy="213"
+                        rx="25"
+                        ry="17"
+                        class="nose"/>
+
+                    <ellipse
+                        cx="299"
+                        cy="208"
+                        rx="7"
+                        ry="4"
+                        fill="#5b3b2d"
+                        opacity=".7"/>
+
+                    <!-- MOUTH -->
+
+                    <path
+                        d="M308 228
+                           C308 244 293 250 280 247
+                           M308 228
+                           C308 244 324 250 337 247"
+                        class="mouth"/>
+
+                    <!-- CHEEKS -->
+
+                    <ellipse
+                        cx="250"
+                        cy="239"
+                        rx="20"
+                        ry="13"
+                        fill="#df9c72"
+                        opacity=".32"/>
+
+                    <ellipse
+                        cx="366"
+                        cy="239"
+                        rx="20"
+                        ry="13"
+                        fill="#df9c72"
+                        opacity=".32"/>
+
+                    <!-- WHISKERS -->
+
+                    <path d="M245 224 L178 208" class="whisker"/>
+                    <path d="M244 233 L170 233" class="whisker"/>
+                    <path d="M247 242 L182 259" class="whisker"/>
+
+                    <path d="M371 224 L438 208" class="whisker"/>
+                    <path d="M372 233 L447 233" class="whisker"/>
+                    <path d="M369 242 L435 259" class="whisker"/>
+
+                    <!-- LITTLE TAIL -->
+
+                    <path
+                        d="M581 322
+                           C625 310 644 328 627 349
+                           C614 365 592 363 576 350"
+                        fill="none"
+                        stroke="#70452f"
+                        stroke-width="24"
+                        stroke-linecap="round"/>
+
+                    <!-- FUR DETAIL -->
+
+                    <path
+                        d="M175 325 C210 295 240 282 270 278"
+                        fill="none"
+                        stroke="#e0aa78"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        opacity=".3"/>
+
+                    <path
+                        d="M415 286 C455 292 486 310 510 330"
+                        fill="none"
+                        stroke="#e0aa78"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                        opacity=".25"/>
+
+                </svg>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- STATS -->
+
+<div class="container" id="status">
+
+    <div class="stats reveal">
+
+        <div class="stat">
+            <div class="stat-number">02/100</div>
+            <div class="stat-label">STRESS LEVEL</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">98/100</div>
+            <div class="stat-label">CHILL LEVEL</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">87%</div>
+            <div class="stat-label">SNACKS</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">MAX</div>
+            <div class="stat-label">HAPPINESS</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- PHILOSOPHY -->
+
+<section id="philosophy">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+            <div class="eyebrow">01 — Philosophy</div>
+
+            <h2>
+                Weniger Drama.<br>
+                Mehr Capybara.
+            </h2>
+
+            <p class="section-text">
+                Capybaras haben eine ziemlich radikale Idee vom Leben:
+                einfach ruhig bleiben, Sonne genießen und sich nicht
+                von unnötigem Stress beeindrucken lassen.
+            </p>
+        </div>
+
+        <div class="cards">
+
+            <article class="card reveal">
+                <div class="card-number">01</div>
+                <div class="card-icon">◌</div>
+
+                <h3>Slow Living</h3>
+
+                <p>
+                    Keine Hektik. Kein unnötiges Rennen.
+                    Wenn etwas bis morgen warten kann,
+                    darf es auch bis morgen warten.
+                </p>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-number">02</div>
+                <div class="card-icon">≈</div>
+
+                <h3>Stay Calm</h3>
+
+                <p>
+                    Ruhe ist kein Zustand.
+                    Ruhe ist eine Lebenseinstellung.
+                    Und Capybaras beherrschen sie perfekt.
+                </p>
+            </article>
+
+            <article class="card reveal">
+                <div class="card-number">03</div>
+                <div class="card-icon">✦</div>
+
+                <h3>Enjoy Life</h3>
+
+                <p>
+                    Warmes Wasser, gutes Gras, Sonne auf dem Fell.
+                    Mehr braucht ein Capybara eigentlich nicht.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- QUOTE -->
+
+<div class="quote reveal">
+    <div class="container">
+
+        <p>
+            “Why rush when
+            <span>you can chill?</span>”
+        </p>
+
+    </div>
+</div>
+
+<!-- HABITAT -->
+
+<section class="water" id="habitat">
+
+    <div class="container water-inner">
+
+        <div class="water-copy reveal">
+
+            <div class="eyebrow">02 — Habitat</div>
+
+            <h2>
+                Born to<br>
+                <span style="color:var(--green)">float.</span>
+            </h2>
+
+            <p class="section-text">
+                Capybaras sind hervorragende Schwimmer.
+                Wasser ist für sie nicht nur ein Lebensraum,
+                sondern praktisch ein persönlicher Wellnessbereich.
+            </p>
+
+            <div class="buttons">
+                <a href="#status" class="btn btn-primary">
+                    Status ansehen
+                </a>
+            </div>
+
+        </div>
+
+        <div class="water-capy reveal">
+
+            <svg viewBox="0 0 600 430"
+                 xmlns="http://www.w3.org/2000/svg">
+
+                <defs>
+                    <linearGradient id="waterFur"
+                        x1="0" y1="0"
+                        x2="1" y2="1">
+                        <stop offset="0" stop-color="#c58a59"/>
+                        <stop offset="1" stop-color="#8c593b"/>
+                    </linearGradient>
+                </defs>
+
+                <!-- water ripples -->
+
+                <ellipse
+                    cx="300"
+                    cy="330"
+                    rx="235"
+                    ry="35"
+                    fill="none"
+                    stroke="#9ed0c0"
+                    stroke-opacity=".18"
+                    stroke-width="5"/>
+
+                <ellipse
+                    cx="300"
+                    cy="330"
+                    rx="175"
+                    ry="22"
+                    fill="none"
+                    stroke="#9ed0c0"
+                    stroke-opacity=".16"
+                    stroke-width="4"/>
+
+                <!-- body floating -->
+
+                <ellipse
+                    cx="315"
+                    cy="278"
+                    rx="205"
+                    ry="88"
+                    fill="url(#waterFur)"/>
+
+                <!-- head -->
+
+                <path
+                    d="M165 175
+                       C165 118 215 78 277 80
+                       C344 82 384 119 387 171
+                       C390 218 356 253 305 264
+                       C249 275 195 250 174 217
+                       C165 203 163 188 165 175Z"
+                    fill="#b8794c"/>
+
+                <!-- ears -->
+
+                <path
+                    d="M188 118
+                       C155 99 147 68 165 52
+                       C183 37 209 55 215 79
+                       C219 98 207 113 188 118Z"
+                    fill="#70452f"/>
+
+                <path
+                    d="M347 115
+                       C360 85 384 66 406 74
+                       C428 83 428 111 410 129
+                       C392 145 367 137 347 115Z"
+                    fill="#70452f"/>
+
+                <!-- eyes -->
+
+                <circle cx="220" cy="165" r="12" fill="#15120f"/>
+                <circle cx="333" cy="165" r="12" fill="#15120f"/>
+
+                <circle cx="224" cy="161" r="4" fill="white"/>
+                <circle cx="337" cy="161" r="4" fill="white"/>
+
+                <!-- muzzle -->
+
+                <ellipse
+                    cx="277"
+                    cy="207"
+                    rx="76"
+                    ry="53"
+                    fill="#d49a68"/>
+
+                <!-- nose -->
+
+                <ellipse
+                    cx="277"
+                    cy="198"
+                    rx="22"
+                    ry="15"
+                    fill="#231713"/>
+
+                <!-- mouth -->
+
+                <path
+                    d="M277 212
+                       C277 228 261 234 249 230
+                       M277 212
+                       C277 228 293 234 305 230"
+                    fill="none"
+                    stroke="#4c3023"
+                    stroke-width="4"
+                    stroke-linecap="round"/>
+
+                <!-- water -->
+
+                <path
+                    d="M82 300
+                       C140 280 185 321 240 302
+                       C295 283 342 322 397 300
+                       C450 280 491 314 530 301"
+                    fill="none"
+                    stroke="#a6d3c5"
+                    stroke-opacity=".18"
+                    stroke-width="7"
+                    stroke-linecap="round"/>
+
+                <path
+                    d="M105 355
+                       C163 335 209 370 265 351
+                       C320 332 363 370 420 350
+                       C468 334 500 355 525 350"
+                    fill="none"
+                    stroke="#a6d3c5"
+                    stroke-opacity=".12"
+                    stroke-width="6"
+                    stroke-linecap="round"/>
+
+            </svg>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <div class="container reveal">
+
+        <div class="eyebrow">03 — Final Thought</div>
+
+        <h2>
+            Sei mehr
+            <span style="color:var(--green)">Capybara.</span>
+        </h2>
+
+        <p>
+            Atme durch. Entspann dich.
+            Und erinnere dich daran, dass nicht alles sofort passieren muss.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+            Zurück nach oben ↑
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer class="container">
+    <span>© 2025 CAPYVERSE</span>
+    <span>Made for maximum chill.</span>
+</footer>
+
+<script>
+/* Reveal animation */
+
+const observer = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    },
+    { threshold: 0.12 }
+);
+
+document.querySelectorAll(".reveal").forEach(el => {
+    observer.observe(el);
+});
+
+/* Very subtle hero movement */
+
+const capy = document.querySelector(".capybara");
+
+document.addEventListener("mousemove", e => {
+    if (window.innerWidth < 800) return;
+
+    const x = (e.clientX / window.innerWidth - .5);
+    const y = (e.clientY / window.innerHeight - .5);
+
+    capy.style.transform =
+        `translate(${x * 5}px, ${y * 4 - 5}px)`;
+});
+
+document.addEventListener("mouseleave", () => {
+    capy.style.transform = "";
+});
+</script>
+
+</body>
+</html>
+```
